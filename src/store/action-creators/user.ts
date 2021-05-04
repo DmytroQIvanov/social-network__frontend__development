@@ -1,16 +1,16 @@
-import {UserAction, UserActionsTypes} from "../../types/user";
 import {Dispatch} from "redux";
 import axios from "axios";
+import {UserAction,UserActionsTypes} from "../../types/user";
 
 
-export const fetchUsers =()=>{
+export const fetchUser =(url:string)=>{
     return async (dispatch: Dispatch<UserAction>)=>{
         try {
-            dispatch({type: UserActionsTypes.FETCH_USERS})
-            const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-            dispatch({type:UserActionsTypes.FETCH_USERS_SUCCESS,payload: response.data})
+            dispatch({type: UserActionsTypes.FETCH_USER})
+            const response = await axios.get(url);
+            dispatch({type:UserActionsTypes.FETCH_USER_SUCCESS,payload: response.data})
         }catch (e) {
-            dispatch({type: UserActionsTypes.FETCH_USERS_ERROR,payload:'error'})
+            dispatch({type: UserActionsTypes.FETCH_USER_ERROR,payload:'error'})
 
         }
     }

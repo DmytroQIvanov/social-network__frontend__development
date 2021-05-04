@@ -1,12 +1,18 @@
 import React from 'react';
-import UserList from "./components/UserList";
+import UserList from "./components/UserList/UserList";
+import Auth from "./components/Auth";
+import {BrowserRouter} from "react-router-dom";
 
 const App = () => {
     return (
+        <BrowserRouter>
+
         <div>
-         <UserList/>
+            <Auth/>
         </div>
-    );
+            </BrowserRouter>
+
+            );
 };
 
 export default App;

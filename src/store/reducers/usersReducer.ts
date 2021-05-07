@@ -1,4 +1,4 @@
-import {UsersAction, UsersActionsTypes, UsersState} from "../../types/users";
+import {UserAction, UserActionsTypes, UsersState} from "../../types/user";
 
 const initialState: UsersState = {
     users:[],
@@ -6,16 +6,16 @@ const initialState: UsersState = {
     error:null
 }
 
-export const usersReducer =(state = initialState, action: UsersAction) : UsersState=>{
+export const usersReducer =(state = initialState, action: UserAction) : UsersState=>{
     switch (action.type){
 
-        case UsersActionsTypes.FETCH_USERS:
+        case UserActionsTypes.FETCH_USER:
             return {loading:true,error:null,users:[]}
 
-        case UsersActionsTypes.FETCH_USERS_SUCCESS:
+        case UserActionsTypes.FETCH_USERS_SUCCESS:
             return {loading:false,error:null,users:action.payload}
 
-        case UsersActionsTypes.FETCH_USERS_ERROR:
+        case UserActionsTypes.FETCH_USER_ERROR:
             return {loading:false,error:action.payload,users:[]}
 
         default:

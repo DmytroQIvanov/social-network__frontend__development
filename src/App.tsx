@@ -1,6 +1,6 @@
 import React from 'react';
 import UserList from "./components/UserList/UserList";
-import Auth from "./components/Auth";
+import Rout from "./components/Rout";
 import {BrowserRouter} from "react-router-dom";
 
 const App = () => {
@@ -8,7 +8,7 @@ const App = () => {
         <BrowserRouter>
 
         <div>
-            <Auth/>
+            <Rout/>
         </div>
             </BrowserRouter>
 

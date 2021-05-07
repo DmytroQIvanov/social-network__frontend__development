@@ -35,7 +35,7 @@ const Settings = () => {
             </ul>
             <input onChange={(e)=>setState(e.target.value)} value={state}/>
             <button onClick={()=>
-                changeSetting('http://localhost:8080/user/609051b8bd9d5a311022f6da',{[setting]:state})
+                changeSetting('http://localhost:8080/user/6093f25f5a1af921488a5958',{[setting]:state})
             }>Send</button>
         </div>
     );

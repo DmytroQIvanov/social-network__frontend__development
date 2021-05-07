@@ -1,6 +1,7 @@
 import {UserState} from "../../types/user";
 import {SettingsAction, SettingsActionsTypes} from "../../types/settings";
 import axios from "axios";
+import {useFetch} from "../../hooks/useFetch";
 
 const initialState: UserState = {
     user:{
@@ -17,8 +18,8 @@ const initialState: UserState = {
 }
 
 const Dd =async()=>{
-    let d = await axios.get('http://localhost:8080/user/609051b8bd9d5a311022f6da');
-    initialState.user = d.data;
+    let d = await useFetch('http://localhost:8080/user/6092ceb13e736344e0bc54de',"GET");
+    initialState.user = d;
 
 }
 Dd();

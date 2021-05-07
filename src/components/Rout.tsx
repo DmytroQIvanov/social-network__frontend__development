@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {BrowserRouter,Router,Route, Redirect,Switch} from "react-router-dom";
 import { createBrowserHistory } from 'history';
 import Login from "./Login/Login";
@@ -6,16 +6,30 @@ import UserPage from "./UserPage/UserPage";
 import Register from "./Register/Register";
 import UserList from "./UserList/UserList";
 import Settings from "./Settings/Settings";
+import {useTypedSelector} from "../hooks/useTypedSelector";
+import {useActions, useAuth} from "../hooks/useActions";
+import LSideBar from "./SideBars/Left-SideBar/LSideBar";
+import NavBar from "./NavBar/NavBar";
+import './Rout.sass'
+import RSideBar from "./SideBars/Right-SideBar/RSideBar";
 
 const history = createBrowserHistory();
 
-const Auth = () => {
-    const [auth,setAuth] =useState(true);
+const Rout = () => {
+
+    const {auth,error,loading} = useTypedSelector(state => state.auth)
+    const {fetchAuth}= useAuth()
+
+
     if(auth){
     return (
         <Router history={history}>
-            <Switch>
-                    <Route path='/home' exact>
+            <NavBar/>
+            <div className='rout'>
+                <LSideBar/>
+
+                <Switch>
+                    <Route path='/user' exact>
                         <UserPage/>
                     </Route>
 
@@ -31,9 +45,13 @@ const Auth = () => {
                     <Route path='/users'>
                         <UserList/>
                     </Route>
+                    <Redirect to='/user' />
 
-                    <Redirect to='/home'/>
-            </Switch>
+
+                </Switch>
+                <RSideBar/>
+            </div>
+
         </Router>
 
     )}
@@ -56,5 +74,5 @@ const Auth = () => {
     }
 };
 
-export default Auth;
+export default Rout;
 

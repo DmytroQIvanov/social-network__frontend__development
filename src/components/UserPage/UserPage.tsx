@@ -7,21 +7,30 @@ import Loader from "../Loader/Loader";
 
 const UserPage = () => {
     const D : {id:string}= useParams()
-    console.log(D.id)
     const {fetchUser}= useActions2()
+
+    useEffect(()=>{
+
+    if(D.id){
+            fetchUser(`http://localhost:8080/user/${D.id}`)
+    }else {
+        fetchUser(`http://localhost:8080/user`)
+
+    }
+    },[])
+
+    // console.log(D.id)
     const {user,error,loading} = useTypedSelector(state => state.user)
 
     console.log(user)
+    console.log(user)
 
-    useEffect(()=>{
-        fetchUser(`http://localhost:8080/user/${D.id}`)
-    },[])
+
 
     return (
         <div>
             {loading&&<Loader/>}
             <Link to='/users'>Back to users</Link>
-            <Link to='/settings'>Settings</Link>
             <div>{user.firstName}</div>
             <div>{user.lastName}</div>
             <div>{user.age}</div>

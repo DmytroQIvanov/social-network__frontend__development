@@ -1,16 +1,18 @@
-import {UsersAction, UsersActionsTypes} from "../../types/users";
+import {UserAction, UserActionsTypes} from "../../types/user";
 import {Dispatch} from "redux";
 import axios from "axios";
+import {useFetch} from "../../hooks/useFetch";
 
 
 export const fetchUsers =()=>{
-    return async (dispatch: Dispatch<UsersAction>)=>{
+    return async (dispatch: Dispatch<UserAction>)=>{
         try {
-            dispatch({type: UsersActionsTypes.FETCH_USERS})
-            const response = await axios.get('http://localhost:8080/users');
-            dispatch({type:UsersActionsTypes.FETCH_USERS_SUCCESS,payload: response.data})
+            dispatch({type: UserActionsTypes.FETCH_USER})
+            const response = await useFetch('http://localhost:8080/users',"GET")
+
+            dispatch({type:UserActionsTypes.FETCH_USERS_SUCCESS,payload: response})
         }catch (e) {
-            dispatch({type: UsersActionsTypes.FETCH_USERS_ERROR,payload:'error'})
+            dispatch({type: UserActionsTypes.FETCH_USER_ERROR,payload:'error'})
 
         }
     }

@@ -17,12 +17,12 @@ const initialState: UserState = {
     error:null
 }
 
-const Dd =async()=>{
-    let d = await useFetch('http://localhost:8080/user/6092ceb13e736344e0bc54de',"GET");
-    initialState.user = d;
+const InitialFetch =async()=>{
+    let response = await useFetch('user',"GET");
+    initialState.user = response;
 
 }
-Dd();
+InitialFetch();
 
 export const settingsReducer = (state = initialState,action:SettingsAction) : UserState =>{
     switch (action.type) {

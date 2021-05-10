@@ -5,7 +5,7 @@ import Loader from "../Loader/Loader";
 import {Link} from "react-router-dom";
 
 import {useActions} from "../../hooks/useActions";
-import './UserList.css'
+import './UserList.sass'
 
 const UserList : React.FC= () => {
     const {users,error,loading} = useTypedSelector(state => state.users)
@@ -24,7 +24,8 @@ const UserList : React.FC= () => {
         <div>
             {users.map(user=>(
                 <div className="user-list__user">
-                    <div>{user.firstName}</div>
+
+                    <div className='user-list__username'>{user.firstName}</div>
                     <div>{user.lastName}</div>
                     <Link to={"/user/"+user._id}>{user.email}</Link>
             </div>))}

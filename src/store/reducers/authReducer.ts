@@ -1,15 +1,12 @@
 import {AuthAction, AuthActionsTypes, AuthState} from "../../types/auth";
-import {useEffect} from "react";
-import {useFetch} from "../../hooks/useFetch";
 
-const initialState:AuthState ={
+export const initialState:AuthState ={
     auth:false,
     error:null,
     loading:false,
 }
 
 
-// const token ={accept_token:localStorage.getItem('token')}
 
 export const authReducer =(state=initialState,action:AuthAction):AuthState=>{
     switch (action.type) {

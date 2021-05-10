@@ -4,6 +4,9 @@ import {AuthAction, AuthActionsTypes} from "../../types/auth";
 
 export const logOut =()=>{
     return async (dispatch: Dispatch<AuthAction>)=> {
-    dispatch({type: AuthActionsTypes.FETCH_AUTH_LOGOUT})
+        localStorage.setItem('token','')
+        console.log('logOut')
+
+        dispatch({type: AuthActionsTypes.FETCH_AUTH_LOGOUT})
 }
 }

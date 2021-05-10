@@ -1,10 +1,9 @@
 import {Dispatch} from "redux";
-import axios from "axios";
 import {AuthAction, AuthActionsTypes} from "../../types/auth";
 import {useFetch} from "../../hooks/useFetch";
 
 
-export const fetchAuth =(url:string,data:any)=>{
+export const fetchAuth =(url:string,data:any,saveLocal:boolean=false)=>{
     return async (dispatch: Dispatch<AuthAction>)=>{
         try {
 
@@ -14,8 +13,8 @@ export const fetchAuth =(url:string,data:any)=>{
             const response= await useFetch(url,"POST",data)
             console.log(response)
             dispatch({type:AuthActionsTypes.FETCH_AUTH_SUCCESS,payload: response})
-
-            // localStorage.setItem('token',response.access_token)
+            if(saveLocal){
+            localStorage.setItem('token',response.access_token)}
         }catch (e) {
             dispatch({type: AuthActionsTypes.FETCH_AUTH_ERROR,payload:'error'})
 

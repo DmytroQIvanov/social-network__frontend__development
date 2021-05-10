@@ -44,7 +44,7 @@ const LSideBar = () => {
                 icon <span>Games</span>
             </Link>
 
-            <button onClick={()=>logOut()}>Log Out</button>
+            <button className='lside-bar__log-out-button'onClick={()=>logOut()}>Log Out</button>
 
         </div>
     );

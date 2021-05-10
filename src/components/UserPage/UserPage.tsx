@@ -12,9 +12,9 @@ const UserPage = () => {
     useEffect(()=>{
 
     if(D.id){
-            fetchUser(`http://localhost:8080/user/${D.id}`)
+            fetchUser(`user/${D.id}`)
     }else {
-        fetchUser(`http://localhost:8080/user`)
+        fetchUser(`user`)
 
     }
     },[])

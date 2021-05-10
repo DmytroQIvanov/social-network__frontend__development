@@ -12,14 +12,16 @@ import LSideBar from "./SideBars/Left-SideBar/LSideBar";
 import NavBar from "./NavBar/NavBar";
 import './Rout.sass'
 import RSideBar from "./SideBars/Right-SideBar/RSideBar";
+import Loader from "./Loader/Loader";
 
 const history = createBrowserHistory();
 
 const Rout = () => {
 
     const {auth,error,loading} = useTypedSelector(state => state.auth)
-    const {fetchAuth}= useAuth()
 
+    const {fetchAuth}= useAuth()
+    useEffect(()=>{fetchAuth('auth/check',{})},[])
 
     if(auth){
     return (
@@ -28,6 +30,7 @@ const Rout = () => {
             <div className='rout'>
                 <LSideBar/>
 
+                <div className='rout__central-block'>
                 <Switch>
                     <Route path='/user' exact>
                         <UserPage/>
@@ -45,17 +48,17 @@ const Rout = () => {
                     <Route path='/users'>
                         <UserList/>
                     </Route>
-                    <Redirect to='/user' />
-
-
+                    <Redirect to='/users'/>
                 </Switch>
+
+                </div>
                 <RSideBar/>
             </div>
 
         </Router>
 
     )}
-    else{
+    else if(loading==false){
         return (
                 <Router history={history}>
                     <Switch>
@@ -70,6 +73,10 @@ const Rout = () => {
                     <Redirect to='/login'/>
                     </Switch>
                 </Router>
+        )
+    }else {
+        return (
+            <div><Loader/></div>
         )
     }
 };

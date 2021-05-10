@@ -3,16 +3,21 @@ import {stat} from "fs";
 import axios from "axios";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useActions, useAuth} from "../../hooks/useActions";
+import {Link} from 'react-router-dom'
 
 const Login = () => {
     const [state,setState] = useState({email:"",password:''})
 
     const {auth,error,loading} = useTypedSelector(state => state.auth)
     const {fetchAuth}= useAuth()
-    useEffect(()=>{fetchAuth('http://localhost:8080/auth/check',{})},[])
+
     return (
         <div>
             LOGIN
+            <div>
+            <Link to='/register'>U have not account?</Link>
+            </div>
+
             <div>
                 <span>email</span>
             <input onChange={
@@ -31,7 +36,7 @@ const Login = () => {
             </div>
             <button onClick={
                 () =>{
-                fetchAuth('http://localhost:8080/auth/login',state)
+                fetchAuth(`auth/login`,state,true)
                     console.log(state)
                 }
             }>Send</button>

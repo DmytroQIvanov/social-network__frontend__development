@@ -5,6 +5,7 @@ import * as userActionCreators from '../store/action-creators/user'
 import * as changeSetting from "../store/action-creators/settings";
 import * as fetchAuth from "../store/action-creators/auth";
 import * as logOut2 from "../store/action-creators/logOut";
+import * as createUser from "../store/action-creators/createUser";
 
 export const useActions =()=>{
     const dispatch = useDispatch()
@@ -27,4 +28,10 @@ export const useAuth =()=>{
 export const useLogOut =()=>{
     const dispatch = useDispatch()
     return bindActionCreators(logOut2,dispatch)
+}
+
+
+export const useCreateNewUser =()=>{
+    const dispatch = useDispatch()
+    return bindActionCreators(createUser,dispatch)
 }

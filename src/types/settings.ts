@@ -1,13 +1,5 @@
-export interface Iuser {
-    firstName: string | null;
-    lastName: string | null;
-    age: string | null;
-    email: string | null;
-    password: string | null;
-    country: string | null;
-    city: string | null;
+import {Iuser} from "./user";
 
-}
 export interface UserState {
     user:Iuser;
     loading:boolean;

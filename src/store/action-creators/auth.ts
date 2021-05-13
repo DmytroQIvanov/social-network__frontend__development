@@ -12,11 +12,11 @@ export const fetchAuth =(url:string,data:any,saveLocal:boolean=false)=>{
 
             const response= await useFetch(url,"POST",data)
             console.log(response)
-            dispatch({type:AuthActionsTypes.FETCH_AUTH_SUCCESS,payload: response})
+            dispatch({type:AuthActionsTypes.FETCH_AUTH_SUCCESS,payload: response,id:response.id})
             if(saveLocal){
             localStorage.setItem('token',response.access_token)}
         }catch (e) {
-            dispatch({type: AuthActionsTypes.FETCH_AUTH_ERROR,payload:'error'})
+            dispatch({type: AuthActionsTypes.FETCH_AUTH_ERROR,payload:'error',id:null})
 
         }
     }

@@ -1,6 +1,6 @@
 import {UserAction, UserActionsTypes, UserState} from "../../types/user";
 
-const initialState: UserState = {
+export const initialState: UserState = {
     user:{
         firstName: null,
         lastName: null,
@@ -9,6 +9,7 @@ const initialState: UserState = {
         password: null,
         country: null,
         city: null,
+        posts:[{content:undefined,dateOfCreation:undefined,changed:false}]
     },
     loading:false,
     error:null

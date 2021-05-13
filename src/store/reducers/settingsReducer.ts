@@ -1,21 +1,9 @@
 import {UserState} from "../../types/user";
 import {SettingsAction, SettingsActionsTypes} from "../../types/settings";
-import axios from "axios";
 import {useFetch} from "../../hooks/useFetch";
+import {initialState} from "./userReducer";
 
-const initialState: UserState = {
-    user:{
-        firstName: null,
-        lastName: null,
-        age: null,
-        email: null,
-        password: null,
-        country: null,
-        city: null,
-    },
-    loading:false,
-    error:null
-}
+
 
 const InitialFetch =async()=>{
     let response = await useFetch('user',"GET");

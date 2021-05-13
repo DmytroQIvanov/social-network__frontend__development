@@ -6,6 +6,10 @@ export interface Iuser {
     password: string | null;
     country: string | null;
     city: string | null;
+    posts: [IPost]
+}
+export interface IPost {
+    content:string|undefined,dateOfCreation:string|undefined,changed:boolean|undefined
 
 }
 export interface UserState {

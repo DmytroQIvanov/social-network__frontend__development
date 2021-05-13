@@ -10,6 +10,7 @@ const Login = () => {
 
     const {auth,error,loading} = useTypedSelector(state => state.auth)
     const {fetchAuth}= useAuth()
+    console.log(auth)
 
     return (
         <div>

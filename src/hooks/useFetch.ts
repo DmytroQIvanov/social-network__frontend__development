@@ -3,13 +3,12 @@ import {useActions, useAuth} from "./useActions";
 import {url} from "../config";
 
 export const useFetch=async (url2:string,method:string="GET",data?:any, ...props:any)=>{
-
+    console.log(`${url}${url2}`)
 
     const response = await fetch(`${url}${url2}`,{
-        method: method,
+        method,
         headers:{
             'Content-Type': 'application/json',
-            // "Content-Type": "application/x-www-form-urlencoded",
             'Authorization':"Bearer " +localStorage.getItem('token'),
             'Access-Control-Allow-Origin':'*'
         },
@@ -22,7 +21,6 @@ export const useFetch=async (url2:string,method:string="GET",data?:any, ...props
 
     if(resp.statusCode ===401) {
         console.log('trueeeeeeee')
-    // return null
     }
 
     return resp

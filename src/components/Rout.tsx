@@ -18,7 +18,7 @@ const history = createBrowserHistory();
 
 const Rout = () => {
 
-    const {auth,error,loading} = useTypedSelector(state => state.auth)
+    const {auth,error,loading,id} = useTypedSelector(state => state.auth)
 
     const {fetchAuth}= useAuth()
     useEffect(()=>{fetchAuth('auth/check',{})},[])
@@ -32,9 +32,6 @@ const Rout = () => {
 
                 <div className='rout__central-block'>
                 <Switch>
-                    <Route path='/user' exact>
-                        <UserPage/>
-                    </Route>
 
 
                     <Route path='/user/:id'>
@@ -48,7 +45,7 @@ const Rout = () => {
                     <Route path='/users'>
                         <UserList/>
                     </Route>
-                    <Redirect to='/users'/>
+                    <Redirect to={`/user/${id}`}/>
                 </Switch>
 
                 </div>

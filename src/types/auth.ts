@@ -7,6 +7,7 @@ export interface AuthState{
     auth:boolean;
     loading:boolean;
     error: null|string;
+    id:string | null
 }
 export enum AuthActionsTypes{
     FETCH_AUTH='FETCH_AUTH',
@@ -23,6 +24,7 @@ interface FetchAuthAction {
 interface FetchAuthSuccessAction{
     type:AuthActionsTypes.FETCH_AUTH_SUCCESS,
     payload:{access_token:string|null,auth:boolean},
+    id:string
 }
 interface FetchAuthErrorAction{
     type:AuthActionsTypes.FETCH_AUTH_ERROR

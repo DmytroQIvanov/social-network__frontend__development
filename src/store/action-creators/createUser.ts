@@ -9,7 +9,8 @@ export const createUser =(data:any)=>{
         try {
 
 
-            const response= await useFetch('new-user',"POST",data)
+            const response= await useFetch('user',"POST",data)
+            console.log(response)
         }catch (e) {
 
         }

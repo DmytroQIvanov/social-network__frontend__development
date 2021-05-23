@@ -5,7 +5,7 @@ import {useTypedSelector} from "../../hooks/useTypedSelector";
 import Loader from "../Loader/Loader";
 import "./UserPage.sass"
 import UserInfo from "./UserInfo/UserInfo";
-import Posts from "./UserPosts/Posts";
+import Posts from "./UserPosts/UserPosts";
 
 
 const UserPage = () => {
@@ -16,24 +16,23 @@ const UserPage = () => {
             fetchUser(`user/${Params.id}`)
     },[Params.id])
 
-    const {id} = useTypedSelector(state => state.auth)
     const {fetchAuth}= useAuth()
 
     const {user,error,loading} = useTypedSelector(state => state.user)
+    const {id} = useTypedSelector(state => state.auth)
+    const owner = id==user.id;
+
 
     return (
-        <div>
-            {loading
-                ? <Loader/> :
-                <><Link to='/users'>Back to users</Link>
-                    {id==Params.id&&<div>
-                        <input/>
-                        <button/>
-                    </div>}
-                    <UserInfo user={user}/>
-                    <Posts posts={user.posts}/>
+        <div className={'user-page'}>
+                <>
+                    {!loading && !user?<Loader/>:<UserInfo user={user} owner={owner}/>}
+                    {loading && user?
+                        <Loader/>
+                    :
+                        <Posts posts={user.posts} owner={owner}/>}
                 </>
-            }
+
         </div>
     );
 }

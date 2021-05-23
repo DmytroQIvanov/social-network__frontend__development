@@ -1,6 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {stat} from "fs";
-import axios from "axios";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useActions, useAuth} from "../../hooks/useActions";
 import {Link} from 'react-router-dom'
@@ -17,6 +15,7 @@ const Login = () => {
             LOGIN
             <div>
             <Link to='/register'>U have not account?</Link>
+                {error&&<div>{error}</div>}
             </div>
 
             <div>
@@ -37,7 +36,7 @@ const Login = () => {
             </div>
             <button onClick={
                 () =>{
-                fetchAuth(`auth/login`,state,true)
+                fetchAuth(`login`,state,true)
                     console.log(state)
                 }
             }>Send</button>

@@ -2,19 +2,48 @@
 .lside-bar
   width: 5vw
   background-color: #325093
-  height: 80vh
+  height: 100%
   display: block
+  position: relative
+  font-size: 1rem
   transition-duration: 0.3s
+  border-bottom-left-radius: 10px
+  border-bottom-right-radius: 10px
+  img
+    width: 3vw
+    background: #cdd0d9
+    border-radius: 10px
+    padding: 0.5vh
+  .lside-bar__settings
+
+    //width: 3vw
+    background: #cdd0d9
+    border-radius: 10px
+    padding: 0.5vh
+    img
+      transition-duration: 0.4s
+      background: none
+      padding: 0
+      &:hover
+        transform: rotate(65deg)
+
   .lside-bar__side-icon
     display: flex
-    padding: 1.5vh
+    padding: 1.4vh
+    padding-top: 5px
     overflow: hidden
     text-decoration: none
     color: black
-    font-size: 1.1em
+    //font-size: 1.1em
+    position: relative
     span
+      color: #cacdd2
+      padding-top: 1.3vh
       display: flex
       height: 10px
+      left: 45%
+      position: absolute
+      transition-duration: 0.1s
   .lside-bar__log-out-button
     border: none
     color: red

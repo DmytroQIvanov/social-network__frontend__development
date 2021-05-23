@@ -15,12 +15,11 @@ export const useFetch=async (url2:string,method:string="GET",data?:any, ...props
         body:JSON.stringify(data)
     })
 
-    console.log(localStorage.getItem('token'))
     const resp = await response.json()
     console.log(resp)
 
     if(resp.statusCode ===401) {
-        console.log('trueeeeeeee')
+        throw new Error('SMTH')
     }
 
     return resp

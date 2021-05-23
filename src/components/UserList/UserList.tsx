@@ -27,7 +27,7 @@ const UserList : React.FC= () => {
 
                     <div className='user-list__username'>{user.firstName}</div>
                     <div>{user.lastName}</div>
-                    <Link to={"/user/"+user._id}>{user.email}</Link>
+                    <Link to={"/user/"+user.id}>{user.email}</Link>
             </div>))}
         </div>
     );

@@ -1,4 +1,4 @@
-import {Iuser} from "./user";
+import {Iuser} from "../interfaces/IUser";
 
 export interface UserState {
     user:Iuser;

@@ -2,6 +2,17 @@ import React from 'react';
 import './LSideBar.sass'
 import {Link} from "react-router-dom";
 import {useLogOut} from "../../../hooks/useActions";
+import home from './img/home.png'
+import friends from './img/friends.png'
+import games from './img/games.png'
+import logout from './img/logout.png'
+import settings from './img/settings.png'
+import photos from './img/gallery.png'
+import messages from './img/conversation.png'
+import groups from './img/group.png'
+import music from './img/sound.png'
+import videos from './img/youtube.png'
+
 
 const LSideBar = () => {
     const {logOut}= useLogOut();
@@ -9,42 +20,43 @@ const LSideBar = () => {
     return (
         <div className='lside-bar'>
             <Link className='lside-bar__side-icon' to="/user">
-                icon <span>My page</span>
+                <img src={home}/> <span>My page</span>
+            </Link>
+
+            <Link className='lside-bar__side-icon' to="/friends">
+                <img src={friends}/> <span>Friends</span>
             </Link>
 
             <Link className='lside-bar__side-icon' to="/lol">
-                icon <span>Friends</span>
+                <img src={photos}/> <span>Photos</span>
             </Link>
 
             <Link className='lside-bar__side-icon' to="/lol">
-                icon <span>Photos</span>
+                <img src={videos}/> <span>Videos</span>
             </Link>
 
             <Link className='lside-bar__side-icon' to="/lol">
-                icon <span>Videos</span>
+                <img src={music}/> <span>Music</span>
             </Link>
 
             <Link className='lside-bar__side-icon' to="/lol">
-                icon <span>Music</span>
+                <img src={messages}/> <span>Messages</span>
             </Link>
 
-            <Link className='lside-bar__side-icon' to="/lol">
-                icon <span>Messages</span>
-            </Link>
-
-            <Link className='lside-bar__side-icon' to="/lol">
-                icon <span>Groups</span>
+            <Link className='lside-bar__side-icon' to="/users">
+                <img src={groups}/> <span>Groups</span>
             </Link>
 
             <Link className='lside-bar__side-icon' to="/settings">
-                icon <span>Settings</span>
+                <div className='lside-bar__settings'><img src={settings} className=''/></div> <span>Settings</span>
             </Link>
 
             <Link className='lside-bar__side-icon' to="/lol">
-                icon <span>Games</span>
+                <img src={games}/> <span>Games</span>
             </Link>
-
-            <button className='lside-bar__log-out-button'onClick={()=>logOut()}>Log Out</button>
+            <Link className='lside-bar__side-icon' to='/logout'>
+            <img src={logout} onClick={()=>logOut()}/> <span>Log out</span>
+            </Link>
 
         </div>
     );

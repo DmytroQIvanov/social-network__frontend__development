@@ -1,15 +1,7 @@
-export interface Iuser {
-    firstName: string | null;
-    lastName: string | null;
-    age: string | null;
-    email: string | null;
-    password: string | null;
-    country: string | null;
-    city: string | null;
-    posts: [IPost]
-}
+import {Iuser} from "../interfaces/IUser";
+
 export interface IPost {
-    content:string|undefined,dateOfCreation:string|undefined,changed:boolean|undefined
+    content:string|undefined,dataOfCreation:string|undefined,changed:boolean|undefined
 
 }
 export interface UserState {

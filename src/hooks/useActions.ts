@@ -6,6 +6,8 @@ import * as changeSetting from "../store/action-creators/settings";
 import * as fetchAuth from "../store/action-creators/auth";
 import * as logOut2 from "../store/action-creators/logOut";
 import * as createUser from "../store/action-creators/createUser";
+import * as fetchFriends from  "../store/action-creators/friends"
+
 
 export const useActions =()=>{
     const dispatch = useDispatch()
@@ -34,4 +36,9 @@ export const useLogOut =()=>{
 export const useCreateNewUser =()=>{
     const dispatch = useDispatch()
     return bindActionCreators(createUser,dispatch)
+}
+
+export const useFriends =()=>{
+    const dispatch = useDispatch()
+    return bindActionCreators(fetchFriends,dispatch)
 }

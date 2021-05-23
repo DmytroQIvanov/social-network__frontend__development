@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {BrowserRouter,Router,Route, Redirect,Switch} from "react-router-dom";
+import {BrowserRouter, Router, Route, Redirect, Switch, useParams} from "react-router-dom";
 import { createBrowserHistory } from 'history';
 import Login from "./Login/Login";
 import UserPage from "./UserPage/UserPage";
@@ -13,39 +13,47 @@ import NavBar from "./NavBar/NavBar";
 import './Rout.sass'
 import RSideBar from "./SideBars/Right-SideBar/RSideBar";
 import Loader from "./Loader/Loader";
+import Friends from "./Friends/Friends";
 
 const history = createBrowserHistory();
 
 const Rout = () => {
 
-    const {auth,error,loading,id} = useTypedSelector(state => state.auth)
+    const {auth,error,loading,id,user} = useTypedSelector(state => state.auth)
+    const Params : {id:string}= useParams()
 
     const {fetchAuth}= useAuth()
-    useEffect(()=>{fetchAuth('auth/check',{})},[])
+
+    useEffect(()=>{
+        if(localStorage.getItem('token')){fetchAuth('auth')}
+        },[Params.id])
 
     if(auth){
     return (
         <Router history={history}>
-            <NavBar/>
+            <NavBar user={user}/>
             <div className='rout'>
                 <LSideBar/>
-
                 <div className='rout__central-block'>
                 <Switch>
 
 
-                    <Route path='/user/:id'>
+                    <Route path='/user/:id' >
                         <UserPage/>
+                    </Route>
+
+                    <Route path='/friends' >
+                        <Friends/>
                     </Route>
 
                      <Route path='/settings' exact>
                          <Settings/>
                      </Route>
 
-                    <Route path='/users'>
+                    <Route path='/users' exact>
                         <UserList/>
                     </Route>
-                    <Redirect to={`/user/${id}`}/>
+                    <Redirect to={`/user/${id}`} />
                 </Switch>
 
                 </div>
@@ -55,7 +63,7 @@ const Rout = () => {
         </Router>
 
     )}
-    else if(loading==false){
+    else if(loading==false ){
         return (
                 <Router history={history}>
                     <Switch>

@@ -9,7 +9,9 @@ export const initialState: UserState = {
         password: null,
         country: null,
         city: null,
-        posts:[{content:undefined,dateOfCreation:undefined,changed:false}]
+        id:null,
+        userImage:null,
+        posts:[{content:undefined,dataOfCreation:undefined,changed:false}]
     },
     loading:false,
     error:null

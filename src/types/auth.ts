@@ -1,3 +1,5 @@
+import {Iuser} from "../interfaces/IUser";
+
 export interface IAuth{
 
 }
@@ -6,8 +8,9 @@ export interface IAuth{
 export interface AuthState{
     auth:boolean;
     loading:boolean;
-    error: null|string;
-    id:string | null
+    error: null|{message:string};
+    id:string | null;
+    user:Iuser |null;
 }
 export enum AuthActionsTypes{
     FETCH_AUTH='FETCH_AUTH',
@@ -24,11 +27,12 @@ interface FetchAuthAction {
 interface FetchAuthSuccessAction{
     type:AuthActionsTypes.FETCH_AUTH_SUCCESS,
     payload:{access_token:string|null,auth:boolean},
-    id:string
+    id:string,
+    user:Iuser
 }
 interface FetchAuthErrorAction{
     type:AuthActionsTypes.FETCH_AUTH_ERROR
-    payload:string
+    payload: { message:string }
 }
 
 interface AuthLogOut{

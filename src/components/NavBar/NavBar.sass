@@ -1,9 +1,78 @@
+@keyframes bell-rotate
+  from
+    transform: rotate(0deg)
+  25%
+    transform: rotate(-35deg)
+  75%
+    transform: rotate(35deg)
+  to
+    transform: rotate(0deg)
+
+
 .nav-bar
   width: 100%
-  height: 8vh
   background-color: #4f70b4
-  display: flex
+  position: relative
+
+  display: grid
+  grid-template-columns: 0.2fr 8fr 0.1fr 2.5fr
+  grid-template-rows: 7vh
+
+  div
+    position: relative
+
+  img
+    position: sticky
+    //top: 1%
+    margin: 1vh
+    margin-left: 2vh
+    object-fit: cover
+
+
+    width: 5vh
+    cursor: pointer
+  .nav-bar__notifications
+    position: relative
+
+    .nav-bar__notifications-count
+      background-color: rgba(202, 205, 210, 0.8)
+      width: 20px
+      border-radius: 1000%
+      text-align: center
+      z-index: 0
+      position: absolute
+      bottom: 0px
+      right: 5%
+
+
+    img
+      transition-duration: 0.3s
+      object-fit: cover
+
+
+
+      &:hover
+        animation-duration: 0.5s
+        animation-name: bell-rotate
+
+    .nav-bar__-notifications-modal
+      position: absolute
+      top: 50px
+      right: 20px
+
+
   .nav-bar__user
     display: flex
-  div
-    margin: 5px
+    font-weight: 500
+    font-size: 2.5vh
+
+    span
+      text-align: center
+      margin: 1.3vh
+    img
+      margin: 2px
+      object-fit: cover
+      border-radius: 25%
+      overflow: hidden
+
+

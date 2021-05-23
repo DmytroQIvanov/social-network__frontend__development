@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import {Iuser} from "../../types/user";
 import {Link} from "react-router-dom";
 import {useFetch} from "../../hooks/useFetch";
 import {useActions2, useCreateNewUser} from "../../hooks/useActions";
@@ -14,8 +13,9 @@ type La = "firstName";
 const Register = () => {
     const {createUser}= useCreateNewUser()
 
-    const [regState,setRegState] = useState(
-        {firstName:"",lastName:"",age:"",email:"",password:"",country:"",city:""}
+    const [regState,setRegState
+    ] = useState(
+        {firstName:"",lastName:"",age:0,email:"",password:"",country:"",city:""}
     )
 
 

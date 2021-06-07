@@ -4,7 +4,7 @@ import {useFetch} from "../../hooks/useFetch";
 import {FriendsAction, FriendsActionsTypes} from "../../types/friends";
 
 
-export const fetchFriends =(url:string,method:"GET" |"POST" |"PATCH")=>{
+export const fetchFriends =(url:string,method:"GET" |"POST" |"PATCH"|"DELETE")=>{
     return async (dispatch: Dispatch<FriendsAction>)=>{
         try {
             dispatch({type: FriendsActionsTypes.FETCH_FRIENDS})
@@ -12,7 +12,7 @@ export const fetchFriends =(url:string,method:"GET" |"POST" |"PATCH")=>{
 
             dispatch({type:FriendsActionsTypes.FETCH_FRIENDS_SUCCESS,payload: response})
         }catch (e) {
-            dispatch({type: FriendsActionsTypes.FETCH_FRIENDS_ERROR,payload:'error'})
+            dispatch({type: FriendsActionsTypes.FETCH_FRIENDS_ERROR,payload:e})
 
         }
     }

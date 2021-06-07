@@ -8,8 +8,7 @@ import {useTypedSelector} from "../../../hooks/useTypedSelector";
 
 
 const UserInfo = (props:any) => {
-    const {user,owner} = props
-    const [modalPanel, setModalPanel] = useState(false)
+    const {user,owner,setModalPanel,modalPanel} = props
 
 
     const {fetchUser}= useActions2()
@@ -21,7 +20,7 @@ const UserInfo = (props:any) => {
 
     return (
         <div className='user-info'>
-            {modalPanel&&<AddImg/>}
+
             <div className='user-info__photo-container'>
                 <img src={user.userImage} className='user-info__photo'/>
                 <img src={add} className='user-info__plus' onClick={()=>{setModalPanel(!modalPanel)}}/>
@@ -37,6 +36,7 @@ const UserInfo = (props:any) => {
                 <div>City: {user.city}</div>
                 <div>Email: {user.email}</div>
             </div>
+            <div>
             {!owner &&
             <button
                 disabled={user.requestIsSend}
@@ -46,7 +46,10 @@ const UserInfo = (props:any) => {
                     <span>U already send request</span>
                     :<span>Add friend</span>}
             </button>}
-
+            </div>
+        <div>
+            {!owner && <button>Send a message</button>}
+        </div>
         </div>
     );
 };

@@ -3,11 +3,14 @@ import Loader from "../Loader/Loader";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useActions, useActions2, useActionSettings} from "../../hooks/useActions";
 import './Settings.sass'
+import {InitialFetch} from "../../store/reducers/settingsReducer";
 
 const Settings = () => {
     const {fetchUser} = useActions2()
     useEffect(() => {
         fetchUser(`user`)
+        // InitialFetch();
+
     }, [])
     const {user, error, loading} = useTypedSelector(state => state.user)
 
@@ -36,7 +39,7 @@ const Settings = () => {
             }}>Send
             </button>
             <div>
-                <button className={'settings__delete-btn'}>Delete account</button>
+                <button className={'settings__delete-btn'} onClick={()=>{fetchUser(`user`,'DELETE');}}>Delete account</button>
             </div>
         </div>
     );

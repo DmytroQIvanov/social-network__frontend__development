@@ -7,12 +7,12 @@ export interface IPost {
 export interface UserState {
     user:Iuser ;
     loading:boolean;
-    error: null | string
+    error: { statusCode:string | null,message:string | null} |null
 }
 export interface UsersState {
     users:any[] ;
     loading:boolean;
-    error: null | string
+    error: { statusCode:string | null,message:string | null} |null
 }
 export enum UserActionsTypes{
     FETCH_USER='FETCH_USER',
@@ -34,7 +34,7 @@ interface FetchUsersSuccessAction {
 }
 interface FetchUserErrorAction {
     type: UserActionsTypes.FETCH_USER_ERROR
-    payload:string
+    payload: { statusCode:string,message:string }
 }
 
 export type UserAction =FetchUserAction | FetchUserSuccessAction |FetchUsersSuccessAction | FetchUserErrorAction

@@ -44,15 +44,15 @@ const LSideBar = () => {
             </Link>
 
             <Link className='lside-bar__side-icon' to="/users">
-                <img src={groups}/> <span>Groups</span>
+                <img src={groups}/> <span>Users</span>
             </Link>
 
             <Link className='lside-bar__side-icon' to="/settings">
                 <div className='lside-bar__settings'><img src={settings} className=''/></div> <span>Settings</span>
             </Link>
 
-            <Link className='lside-bar__side-icon' to="/lol">
-                <img src={games}/> <span>Games</span>
+            <Link className='lside-bar__side-icon' to="/entertainment">
+                <img src={games}/> <span>Entertainment</span>
             </Link>
             <Link className='lside-bar__side-icon' to='/logout'>
             <img src={logout} onClick={()=>logOut()}/> <span>Log out</span>

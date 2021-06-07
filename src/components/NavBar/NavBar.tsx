@@ -13,13 +13,13 @@ const NavBar = (props:any) => {
         <div className='nav-bar'>
 
             <div><img src={logo}/></div>
-
+            {/*Space*/}
             <div></div>
             <div className='nav-bar__notifications'>
 
             <img src={alarm} onClick={()=>{setNotifications(!notifications)}}/>
             {
-            user.notifications.length>=1&&
+            user.notifications&&
             <span className='nav-bar__notifications-count'>{user.notifications.length}</span>
             }
             {notifications  &&

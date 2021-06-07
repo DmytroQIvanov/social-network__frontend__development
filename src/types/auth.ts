@@ -11,6 +11,7 @@ export interface AuthState{
     error: null|{message:string};
     id:string | null;
     user:Iuser |null;
+    message:string |null
 }
 export enum AuthActionsTypes{
     FETCH_AUTH='FETCH_AUTH',
@@ -28,11 +29,12 @@ interface FetchAuthSuccessAction{
     type:AuthActionsTypes.FETCH_AUTH_SUCCESS,
     payload:{access_token:string|null,auth:boolean},
     id:string,
-    user:Iuser
+    user:Iuser,
+    message:string
 }
 interface FetchAuthErrorAction{
     type:AuthActionsTypes.FETCH_AUTH_ERROR
-    payload: { message:string }
+    payload: { message:string ,statusCode:string}
 }
 
 interface AuthLogOut{

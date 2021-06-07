@@ -20,7 +20,7 @@ interface FetchSettingsSuccessAction {
 }
 interface FetchSettingsErrorAction {
     type: SettingsActionsTypes.FETCH_SETTINGS_ERROR
-    payload:string
+    payload:{ statusCode:string | null,message:string | null} |null
 }
 
 export type SettingsAction =FetchSettingsAction | FetchSettingsSuccessAction | FetchSettingsErrorAction

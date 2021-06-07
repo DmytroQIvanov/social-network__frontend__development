@@ -5,6 +5,7 @@ const Notifications = (props:{notifications:[{content:string}]}) => {
     const {notifications} = props;
     return (
         <div className='notifications'>
+
             {notifications.length>=1
                 ? <>{notifications?.map(elem=>(<div>{elem.content}</div>))}</>
                 : <>Nothing</>}

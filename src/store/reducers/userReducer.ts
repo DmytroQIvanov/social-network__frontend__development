@@ -14,7 +14,7 @@ export const initialState: UserState = {
         posts:[{content:undefined,dataOfCreation:undefined,changed:false}]
     },
     loading:false,
-    error:null
+    error:{statusCode:null,message:null}
 }
 
 export const userReducer = (state = initialState,action:UserAction) : UserState =>{

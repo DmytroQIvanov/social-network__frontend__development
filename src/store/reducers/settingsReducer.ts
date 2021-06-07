@@ -5,12 +5,13 @@ import {initialState} from "./userReducer";
 
 
 
-const InitialFetch =async()=>{
+export const InitialFetch =async()=>{
     let response = await useFetch('user',"GET");
     initialState.user = response;
 
 }
-InitialFetch();
+
+
 
 export const settingsReducer = (state = initialState,action:SettingsAction) : UserState =>{
     switch (action.type) {

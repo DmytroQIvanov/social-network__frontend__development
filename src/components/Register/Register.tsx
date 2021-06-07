@@ -1,85 +1,97 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
-import {useFetch} from "../../hooks/useFetch";
 import {useActions2, useCreateNewUser} from "../../hooks/useActions";
 import {createUser} from "../../store/action-creators/createUser";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import './Register.sass'
+import Loader from "../Loader/Loader";
 
-interface firstName {
-    value:"firstName",
-    name:string
-}
-type La = "firstName";
 
 const Register = () => {
     const {createUser}= useCreateNewUser()
+    const {auth,error,loading,id,user,message} = useTypedSelector(state => state.auth)
 
-    const [regState,setRegState
-    ] = useState(
-        {firstName:"",lastName:"",age:0,email:"",password:"",country:"",city:""}
-    )
+
+    const [regState,setRegState] = useState({firstName:"",lastName:"",age:'',email:"",password:"",country:"",city:""})
 
 
     const regDataHandler =(elem:React.ChangeEvent<HTMLInputElement>)=>{
         setRegState({...regState,[elem.target.name]:elem.target.value})
     }
-    const sendData =()=>{
-        // useFetch('user',"POST",regState)
-
-    }
     return (
-        <div>
+        <div className={'register'}>
+            {loading&&<Loader/>}
+
+            <div className={'register__container'}>
+                <div className={'register__title'}>Register</div>
+                <div className={'register__error'}>{error?.message}</div>
+                <div className={'register__success-title'}>{message}</div>
+
+
+                <div className={'register__input-container'}>
+                     <span className={'register__input-title'}>firstName *</span>
+                    <input onChange={(e)=>
+                    regDataHandler(e)
+                    } name='firstName' value={regState.firstName} className={'register__input'}
+                    placeholder={'John'}></input>
+                </div>
             <div>
-                <div><Link to='/login'>Login</Link></div>
-                <span>firstName</span>
+                <div className={'register__input-container'}>
+
+                <span className={'register__input-title'} >lastName *</span>
                 <input onChange={(e)=>
                     regDataHandler(e)
-                } name='firstName' value={regState.firstName}></input>
+                } name='lastName' value={regState.lastName} className={'register__input'} placeholder={'Dickerson'}></input>
+                </div>
             </div>
-            <div>
-                <span>lastName</span>
+                <div className={'register__input-container'}>
+
+                <span className={'register__input-title'}>age</span>
                 <input onChange={(e)=>
                     regDataHandler(e)
-                } name='lastName' value={regState.lastName}></input>
+                } name='age' value={regState.age}
+                className={'register__input'}
+                       placeholder={'18'}
+                ></input>
             </div>
-            <div>
-                <span>age</span>
+                <div className={'register__input-container'}>
+
+                <span className={'register__input-title'}>email *</span>
                 <input onChange={(e)=>
                     regDataHandler(e)
-                } name='age' value={regState.age}></input>
+                } name='email' value={regState.email}
+                       className={'register__input'}></input>
             </div>
-            <div>
-                <span>email *</span>
+                <div className={'register__input-container'}>
+
+                <span className={'register__input-title'}>password *</span>
                 <input onChange={(e)=>
                     regDataHandler(e)
-                } name='email' value={regState.email}></input>
+                } name='password' type='password'value={regState.password}
+                       className={'register__input'}></input>
             </div>
-            <div>
-                <span>password *</span>
+                <div className={'register__input-container'}>
+
+                <span className={'register__input-title'}>country</span>
                 <input onChange={(e)=>
                     regDataHandler(e)
-                } name='password' value={regState.password}></input>
+                } name='country' value={regState.country}
+                       className={'register__input'}></input>
             </div>
-            <div>
-                <span>country</span>
+                <div className={'register__input-container'}>
+
+                <span className={'register__input-title'}>city</span>
                 <input onChange={(e)=>
                     regDataHandler(e)
-                } name='country' value={regState.country}></input>
+                } name='city' value={regState.city}
+                       className={'register__input'}></input>
             </div>
-            <div>
-                <span>city</span>
-                <input onChange={(e)=>
-                    regDataHandler(e)
-                } name='city' value={regState.city}></input>
-            </div>
-            {/*<div>*/}
-            {/*    <span>firstName</span>*/}
-            {/*    <input onChange={(e)=>*/}
-            {/*        regDataHandler(e)*/}
-            {/*    } name='firstName' value={regState.firstName.value}></input>*/}
-            {/*</div>*/}
-            <button onClick={()=>{
+                <button className={'register__btn'} onClick={()=>{
                 createUser(regState)
-            }}></button>
+                }}>Register</button>
+                <div className={'register__login-container'}><Link to='/login' className={'register__login'}>Login</Link></div>
+
+            </div>
         </div>
     );
 };

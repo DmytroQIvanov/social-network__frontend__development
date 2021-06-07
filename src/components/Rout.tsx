@@ -14,19 +14,29 @@ import './Rout.sass'
 import RSideBar from "./SideBars/Right-SideBar/RSideBar";
 import Loader from "./Loader/Loader";
 import Friends from "./Friends/Friends";
+import Entertainment from "./Entertainment/Entertainment";
 
 const history = createBrowserHistory();
 
 const Rout = () => {
+    async function CheckAuth(){
+        await fetchAuth('auth')
+         setCheckAuth(true);
+    }
+
 
     const {auth,error,loading,id,user} = useTypedSelector(state => state.auth)
     const Params : {id:string}= useParams()
+    let [checkAuth,setCheckAuth] = useState(false);
 
     const {fetchAuth}= useAuth()
 
-    useEffect(()=>{
-        if(localStorage.getItem('token')){fetchAuth('auth')}
-        },[Params.id])
+    useEffect ( ()=>{
+        if(localStorage.getItem('token')){
+        CheckAuth()
+        }else{
+            setCheckAuth(true)
+        }},[])
 
     if(auth){
     return (
@@ -53,6 +63,12 @@ const Rout = () => {
                     <Route path='/users' exact>
                         <UserList/>
                     </Route>
+                    <Route path='/entertainment/:id' exact>
+                        <Entertainment/>
+                    </Route>
+                    <Route path='/entertainment' exact>
+                        <Entertainment/>
+                    </Route>
                     <Redirect to={`/user/${id}`} />
                 </Switch>
 
@@ -63,10 +79,14 @@ const Rout = () => {
         </Router>
 
     )}
-    else if(loading==false ){
+    else if(checkAuth==false) {
         return (
-                <Router history={history}>
-                    <Switch>
+            <div><Loader/></div>
+        )
+    } else{
+        return (
+            <Router history={history}>
+                <Switch>
                     <Route path='/login'>
                         <Login/>
                     </Route>
@@ -76,12 +96,8 @@ const Rout = () => {
                     </Route>
 
                     <Redirect to='/login'/>
-                    </Switch>
-                </Router>
-        )
-    }else {
-        return (
-            <div><Loader/></div>
+                </Switch>
+            </Router>
         )
     }
 };

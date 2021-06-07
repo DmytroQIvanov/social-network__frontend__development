@@ -2,7 +2,7 @@ import {Iuser} from "../interfaces/IUser";
 
 
 export interface FriendsState {
-    data:{friends:[Iuser |null],outgoingFriendRequests:[{email:string,id?:string,requestId:string}|null],incomingFriendRequests:[{email:string,id?:string,requestId:string}|null]} ;
+    data:{friends:[Iuser |null],outgoingFriendRequests:[{email:string,id:string,requestId:string}?],incomingFriendRequests:[{email:string,id?:string,requestId:string}?]} ;
     loading:boolean;
     error: null | string
 }
@@ -16,8 +16,9 @@ export enum FriendsActionsTypes{
 
 interface FetchFriendsSuccessAction {
     type: FriendsActionsTypes.FETCH_FRIENDS_SUCCESS
-    payload:{friends:[Iuser],outgoingFriendRequests:[{email:string,id:string,requestId:string}],
-        incomingFriendRequests:[{email:string,id:string,requestId:string}]} ;
+    payload:{friends:[Iuser],
+        outgoingFriendRequests:[{email:string,id:string,requestId:string}?],
+        incomingFriendRequests:[{email:string,id:string,requestId:string}?]} ;
 
 }
 interface FetchUserErrorAction {

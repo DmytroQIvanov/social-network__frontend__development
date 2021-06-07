@@ -6,11 +6,14 @@ import Loader from "../Loader/Loader";
 import "./UserPage.sass"
 import UserInfo from "./UserInfo/UserInfo";
 import Posts from "./UserPosts/UserPosts";
+import AddImg from "../Modal-panels/AddImg/AddImg";
 
 
 const UserPage = () => {
     const Params : {id:string}= useParams()
     const {fetchUser}= useActions2()
+    const [modalPanel, setModalPanel] = useState(false)
+
 
     useEffect(()=>{
             fetchUser(`user/${Params.id}`)
@@ -24,16 +27,20 @@ const UserPage = () => {
 
 
     return (
-        <div className={'user-page'}>
-                <>
-                    {!loading && !user?<Loader/>:<UserInfo user={user} owner={owner}/>}
+        <>
+            {modalPanel&&<AddImg/>}
+
+            <div className={'user-page'}>
+                    {!loading && !user
+                        ?<Loader/>
+                        :<UserInfo user={user} owner={owner} modalPanel={modalPanel} setModalPanel={setModalPanel}/>}
                     {loading && user?
                         <Loader/>
                     :
                         <Posts posts={user.posts} owner={owner}/>}
-                </>
 
         </div>
+            </>
     );
 }
 

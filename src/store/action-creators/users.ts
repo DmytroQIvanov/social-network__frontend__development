@@ -12,7 +12,7 @@ export const fetchUsers =()=>{
 
             dispatch({type:UserActionsTypes.FETCH_USERS_SUCCESS,payload: response})
         }catch (e) {
-            dispatch({type: UserActionsTypes.FETCH_USER_ERROR,payload:'error'})
+            dispatch({type: UserActionsTypes.FETCH_USER_ERROR,payload:e})
 
         }
     }
